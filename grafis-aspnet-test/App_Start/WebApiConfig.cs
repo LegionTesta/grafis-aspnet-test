@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using MultipartDataMediaFormatter;
+using System.Net.Http.Formatting;
 using System.Web.Http;
 
 namespace grafis_aspnet_test
@@ -10,7 +9,10 @@ namespace grafis_aspnet_test
         public static void Register(HttpConfiguration config)
         {
             // Serviços e configuração da API da Web
-
+            config.EnableCors();
+            config.Formatters.Clear();
+            config.Formatters.Add(new JsonMediaTypeFormatter());
+            config.Formatters.Add(new FormMultipartEncodedMediaTypeFormatter());
             // Rotas da API da Web
             config.MapHttpAttributeRoutes();
 
