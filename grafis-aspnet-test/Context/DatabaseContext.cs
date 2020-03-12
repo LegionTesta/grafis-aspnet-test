@@ -4,7 +4,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace grafis_aspnet_test.Context
 {
-    public class Context : DbContext
+    public class DatabaseContext : DbContext
     {
         public DbSet<Client> Clients { get; set; }
 
@@ -12,7 +12,7 @@ namespace grafis_aspnet_test.Context
 
         public DbSet<Product> Products { get; set; }
 
-        public Context() : base("ConnectionString")
+        public DatabaseContext() : base("ConnectionString")
         {
         }
 
