@@ -2,7 +2,7 @@
 
 namespace grafis_aspnet_test.Context
 {
-    public class ContextConfiguration : DbMigrationsConfiguration<Context>
+    public class ContextConfiguration : DbMigrationsConfiguration<DatabaseContext>
     {
         public ContextConfiguration()
         {

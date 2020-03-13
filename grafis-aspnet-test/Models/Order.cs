@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace grafis_aspnet_test.Models
 {
     public class Order
     {
+        [Key]
+        public long Id { get; set; }
 
         [Required]
         public Client Client { get; set; }

@@ -13,6 +13,7 @@ namespace grafis_aspnet_test.Models
 
         [Required]
         [EmailAddress]
+        [StringLength(40)]
         public string Email { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
