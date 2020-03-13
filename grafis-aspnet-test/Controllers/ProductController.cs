@@ -19,7 +19,7 @@ namespace grafis_aspnet_test.Controllers
             public long id { get; set; }
             public string desc { get; set; }
             public double price { get; set; }
-            //public string imageURL { get; set; }
+            public string imageURL { get; set; }
         }
 
         public static ProductInfo getData(Product product)
@@ -29,7 +29,7 @@ namespace grafis_aspnet_test.Controllers
                 id = product.Id,
                 desc = product.Desc,
                 price = product.Price,
-                //imageURL = product.ImageURL,
+                imageURL = product.ImageURL,
             };
         }
 
@@ -72,7 +72,7 @@ namespace grafis_aspnet_test.Controllers
 
                     product = context.Products.Add(product);
                     context.SaveChanges();
-                    /*var files = HttpContext.Current.Request.Files;
+                    var files = HttpContext.Current.Request.Files;
                     if (files.Count > 0)
                     {
                         var image = files[0];
@@ -86,7 +86,7 @@ namespace grafis_aspnet_test.Controllers
                         image.SaveAs(absolutePath);
                         product.ImageURL = $"{hostName}/{relativePath}";
                         context.SaveChanges();
-                    }*/
+                    }
 
                     return Ok<ProductInfo>(getData(product));
                 }

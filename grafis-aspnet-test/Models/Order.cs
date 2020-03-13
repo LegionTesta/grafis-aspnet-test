@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace grafis_aspnet_test.Models
 {
@@ -8,7 +10,7 @@ namespace grafis_aspnet_test.Models
         public long Id { get; set; }
 
         [Required]
-        public Client Client { get; set; }
+        public virtual Client Client { get; set; }
 
         [Required]
         public double Value { get; set; }
@@ -17,5 +19,11 @@ namespace grafis_aspnet_test.Models
 
         [Required]
         public double TotalValue { get; set; }
+
+        [Required]
+        public DateTime Date { get; set; }
+
+        [Required]
+        public virtual ICollection<OrderProduct> Products { get; set; }
     }
 }

@@ -16,6 +16,8 @@ namespace grafis_aspnet_test.Models
 
         public double Price { get; set; }
 
-        //public virtual ICollection<OrderProduct> Orders { get; set; }
+        public string ImageURL { get; set; }
+
+        public virtual ICollection<OrderProduct> Order { get; set; }
     }
 }
