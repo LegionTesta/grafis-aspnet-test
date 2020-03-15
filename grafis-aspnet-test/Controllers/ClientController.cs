@@ -20,7 +20,7 @@ namespace grafis_aspnet_test.Controllers
             public string email { get; set; }
         }
 
-        public static ClientInfo getData(Client client)
+        public static ClientInfo getInfo(Client client)
         {
             return new ClientInfo
             {
@@ -34,7 +34,7 @@ namespace grafis_aspnet_test.Controllers
         {
             using (var context = new DatabaseContext())
             {
-                return context.Clients.Select(getData).ToList();
+                return context.Clients.Select(getInfo).ToList();
             }
         }
 
@@ -43,7 +43,7 @@ namespace grafis_aspnet_test.Controllers
             using (var context = new DatabaseContext())
             {
                 var client = context.Clients.Find(id);
-                return getData(client);
+                return getInfo(client);
             }
         }
 
@@ -71,7 +71,7 @@ namespace grafis_aspnet_test.Controllers
                     client = context.Clients.Add(client);
                     context.SaveChanges();
 
-                    return Ok<ClientInfo>(getData(client));
+                    return Ok<ClientInfo>(getInfo(client));
                 }
                 catch (DbEntityValidationException validationException)
                 {
@@ -79,7 +79,7 @@ namespace grafis_aspnet_test.Controllers
                 }
                 catch (DbUpdateException e)
                 {
-                    return BadRequest($"Email {data.Email} cadastrado.");
+                    return BadRequest($"Email {data.Email} já cadastrado.");
                 }
 
             }

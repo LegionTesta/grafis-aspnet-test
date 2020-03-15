@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace grafis_aspnet_test.Models
 {
@@ -6,6 +7,9 @@ namespace grafis_aspnet_test.Models
     {
         [Required]
         public long Id { get; set; }
+
+        [Required]
+        public DateTime Date { get; set; }
 
         [Required]
         public virtual Order Order { get; set; }

@@ -22,7 +22,7 @@ namespace grafis_aspnet_test.Controllers
             public string imageURL { get; set; }
         }
 
-        public static ProductInfo getData(Product product)
+        public static ProductInfo getInfo(Product product)
         {
             return new ProductInfo
             {
@@ -37,7 +37,7 @@ namespace grafis_aspnet_test.Controllers
         {
             using (var context = new DatabaseContext())
             {
-                return context.Products.Select(getData).ToList();
+                return context.Products.Select(getInfo).ToList();
             }
         }
 
@@ -46,7 +46,7 @@ namespace grafis_aspnet_test.Controllers
             using (var context = new DatabaseContext())
             {
                 var products = context.Products.Find(id);
-                return getData(products);
+                return getInfo(products);
             }
         }
 
@@ -88,7 +88,7 @@ namespace grafis_aspnet_test.Controllers
                         context.SaveChanges();
                     }
 
-                    return Ok<ProductInfo>(getData(product));
+                    return Ok<ProductInfo>(getInfo(product));
                 }
                 catch (DbEntityValidationException validationException)
                 {
