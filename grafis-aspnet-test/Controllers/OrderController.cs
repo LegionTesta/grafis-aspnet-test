@@ -24,7 +24,7 @@ namespace grafis_aspnet_test.Controllers
         public class OrderInfo
         {
             public long id { get; set; }
-            public DateTime createdAt { get; set; }
+            public DateTime date { get; set; }
             public virtual ICollection<OrderProductInfo> products { get; set; }
             public ClientInfo client { get; set; }
             public double value { get; set; }
@@ -47,7 +47,7 @@ namespace grafis_aspnet_test.Controllers
             return new OrderInfo
             {
                 id = order.Id,
-                createdAt = order.Date,
+                date = order.Date,
                 products = order.Products.Select(getOrderProductData).ToList(),
                 client = ClientController.getInfo(order.Client),
                 value = order.Value,
@@ -99,16 +99,16 @@ namespace grafis_aspnet_test.Controllers
 
                     if (data.Products != null)
                     {
-                        foreach (var orderProductData in data.Products)
+                        foreach (var orderProductInfo in data.Products)
                         {
-                            var p = context.Products.Find(orderProductData.ProductId);
+                            var p = context.Products.Find(orderProductInfo.ProductId);
                             if (p != null)
                             {
-                                products.Add(new OrderProduct { Product = p, Amount = orderProductData.Amount, Date = DateTime.Now });
+                                products.Add(new OrderProduct { Product = p, Amount = orderProductInfo.Amount, Date = DateTime.Now });
                             }
                             else
                             {
-                                return BadRequest($"Produto {orderProductData.ProductId} não encontrado.");
+                                return BadRequest($"Produto {orderProductInfo.ProductId} não encontrado.");
                             }
                         }
                     }
