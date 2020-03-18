@@ -12,7 +12,7 @@ namespace grafis_aspnet_test.Context
 
         public DbSet<Product> Products { get; set; }
 
-        public DatabaseContext() : base("GrafisDatabase")
+        public DatabaseContext() : base("GrafisDB")
         {
         }
 

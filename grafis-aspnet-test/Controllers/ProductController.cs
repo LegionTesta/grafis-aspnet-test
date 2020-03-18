@@ -19,7 +19,6 @@ namespace grafis_aspnet_test.Controllers
             public long id { get; set; }
             public string desc { get; set; }
             public double price { get; set; }
-            public string imageURL { get; set; }
         }
 
         public static ProductInfo getInfo(Product product)
@@ -29,7 +28,6 @@ namespace grafis_aspnet_test.Controllers
                 id = product.Id,
                 desc = product.Desc,
                 price = product.Price,
-                imageURL = product.ImageURL,
             };
         }
 
@@ -72,21 +70,6 @@ namespace grafis_aspnet_test.Controllers
 
                     product = context.Products.Add(product);
                     context.SaveChanges();
-                    var files = HttpContext.Current.Request.Files;
-                    if (files.Count > 0)
-                    {
-                        var image = files[0];
-                        string serverPath = HttpContext.Current.Server.MapPath("~/");
-                        string relativeFolderPath = "public/product_images/";
-                        string relativePath = Path.Combine(relativeFolderPath, $"{product.Id}.jpg");
-                        string absoluteFolderPath = Path.Combine(serverPath, relativeFolderPath);
-                        string absolutePath = Path.Combine(serverPath, relativePath);
-                        string hostName = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
-                        Directory.CreateDirectory(absoluteFolderPath);
-                        image.SaveAs(absolutePath);
-                        product.ImageURL = $"{hostName}/{relativePath}";
-                        context.SaveChanges();
-                    }
 
                     return Ok<ProductInfo>(getInfo(product));
                 }
